@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Student } from '../student.types';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { StudentRestService } from 'src/app/shared/students-rest.service';
 
 @Component({
   selector: 'app-student-list',
@@ -8,44 +10,49 @@ import { Student } from '../student.types';
 })
 export class StudentListComponent implements OnInit {
 
-  newStudentFirstName = '';
-  newStudentLastName = '';
+  form: FormGroup;
+
+  formSubmitted = false;
 
   searchQuery = '';
 
-  students: Student[] = [
-    {
-      id: 1,
-      firstName: 'Miras',
-      lastName: 'Magzom',
-      score: 7.5,
-    },
-    {
-      id: 2,
-      firstName: 'John',
-      lastName: 'Snow',
-      score: 8
-    }
-  ];
+  students: Student[];
 
   studentsToShow: Student[] = [];
-  constructor() { }
+  constructor(private studentRestService: StudentRestService) { }
 
   ngOnInit() {
-    this.studentsToShow = [...this.students];
+    this.studentRestService.getStudents()
+      .subscribe(students => {
+        this.students = students;
+        this.studentsToShow = [...this.students];
+      });
+    this.form = new FormGroup({
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
+    });
   }
 
   addStudent() {
-    if (this.newStudentFirstName && this.newStudentLastName) {
-      this.students.push({
-        id: this.students.length + 1,
-        firstName: this.newStudentFirstName,
-        lastName: this.newStudentLastName,
-        score: 0,
-      });
-      this.newStudentFirstName = '';
-      this.newStudentLastName = '';
+    this.formSubmitted = true;
+
+    if (!this.form.valid) {
+      return;
     }
+
+    const newStudent = {
+      firstName: this.form.get('firstName').value,
+      lastName: this.form.get('lastName').value,
+      score: 0,
+    };
+
+    this.studentRestService.createStudent(newStudent)
+      .subscribe(res => {
+        this.students.push(res);
+        this.studentsToShow = [...this.students];
+        this.formSubmitted = false;
+        this.form.reset();
+      });
   }
 
   search() {
