@@ -1,0 +1,12 @@
+<h3>Students list</h3>
+<div class="student-new-form">
+  <input type="text" [(ngModel)]="newStudentFirstName" placeholder="First Name" />
+  <input type="text" [(ngModel)]="newStudentLastName" placeholder="Last Name" />
+  <button type="button" (click)="addStudent()">Save</button>
+</div>
+<input type="text" class="student-search-input" placeholder="Search..." [(ngModel)]="searchQuery" (ngModelChange)="search()" />
+<ol>
+  <li *ngFor="let student of studentsToShow">
+    <app-student-list-item [student]="student"></app-student-list-item>
+  </li>
+</ol>
