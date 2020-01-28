@@ -13,6 +13,18 @@
         This field is required
       </div>
     </div>
+    <ng-container [formGroup]="courseCG" *ngFor="let courseCG of form.get('courses').controls">
+      <div class="form-group">
+        <input type="text" formControlName="name" placeholder="Course name" />
+        <div class="form-error" *ngIf="formSubmitted && courseCG.get('name').errors?.required">
+          This field is required
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="text" formControlName="startDate" placeholder="Last Name" />
+      </div>
+    </ng-container>
+    <button type="button" (click)="addCourse()">Add course</button>
     <button type="submit" >Save</button>
   </form>
 </div>
