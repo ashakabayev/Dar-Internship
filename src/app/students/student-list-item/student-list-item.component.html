@@ -1,3 +1,4 @@
 <div class="student-item" *ngIf="student">
  {{ student.firstName + ' ' + student.lastName}} : <span [ngClass]="{'red': student.score < 8}">{{ student.score }}</span>
+<div *ngFor="let course of student.courses">{{ course.name }}, {{ course.startDate }}</div>
 </div>

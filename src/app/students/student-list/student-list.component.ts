@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Student } from '../student.types';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { StudentRestService } from 'src/app/shared/students-rest.service';
 
 @Component({
@@ -30,7 +30,16 @@ export class StudentListComponent implements OnInit {
     this.form = new FormGroup({
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
+      courses: new FormArray([]),
     });
+  }
+
+  addCourse() {
+    const constrols = this.form.get('courses') as FormArray;
+    constrols.push(new FormGroup({
+      name: new FormControl('', Validators.required),
+      startDate: new FormControl(''),
+    }));
   }
 
   addStudent() {
@@ -44,6 +53,7 @@ export class StudentListComponent implements OnInit {
       firstName: this.form.get('firstName').value,
       lastName: this.form.get('lastName').value,
       score: 0,
+      courses: this.form.get('courses').value
     };
 
     this.studentRestService.createStudent(newStudent)
