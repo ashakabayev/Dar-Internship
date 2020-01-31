@@ -1,0 +1,31 @@
+<h1>Student management</h1>
+<div class="student-new-form">
+  <form [formGroup]="form" (ngSubmit)="addStudent()">
+    <div class="form-group">
+      <input type="text" formControlName="firstName" placeholder="First Name" />
+      <div class="form-error" *ngIf="formSubmitted && form.get('firstName').errors?.required">
+        This field is required
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="text" formControlName="lastName" placeholder="Last Name" />
+      <div class="form-error" *ngIf="formSubmitted && form.get('lastName').errors?.required">
+        This field is required
+      </div>
+    </div>
+    <h2>Courses:</h2>
+    <ng-container [formGroup]="courseCG" *ngFor="let courseCG of form.get('courses').controls">
+      <div class="form-group">
+        <input type="text" formControlName="name" placeholder="Course name" />
+        <div class="form-error" *ngIf="formSubmitted && courseCG.get('name').errors?.required">
+          This field is required
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="text" formControlName="startDate" placeholder="Start date" />
+      </div>
+    </ng-container>
+    <button type="button" (click)="addCourse()">Add course</button>
+    <button type="submit" >Save</button>
+  </form>
+</div>

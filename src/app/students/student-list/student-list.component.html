@@ -1,36 +1,10 @@
 <h3>Students list</h3>
-<div class="student-new-form">
-  <form [formGroup]="form" (ngSubmit)="addStudent()">
-    <div class="form-group">
-      <input type="text" formControlName="firstName" placeholder="First Name" />
-      <div class="form-error" *ngIf="formSubmitted && form.get('firstName').errors?.required">
-        This field is required
-      </div>
-    </div>
-    <div class="form-group">
-      <input type="text" formControlName="lastName" placeholder="Last Name" />
-      <div class="form-error" *ngIf="formSubmitted && form.get('lastName').errors?.required">
-        This field is required
-      </div>
-    </div>
-    <ng-container [formGroup]="courseCG" *ngFor="let courseCG of form.get('courses').controls">
-      <div class="form-group">
-        <input type="text" formControlName="name" placeholder="Course name" />
-        <div class="form-error" *ngIf="formSubmitted && courseCG.get('name').errors?.required">
-          This field is required
-        </div>
-      </div>
-      <div class="form-group">
-        <input type="text" formControlName="startDate" placeholder="Last Name" />
-      </div>
-    </ng-container>
-    <button type="button" (click)="addCourse()">Add course</button>
-    <button type="submit" >Save</button>
-  </form>
+<a routerLink="/student">Create student</a>
+<div>
+  <input type="text" class="student-search-input" placeholder="Search..." [(ngModel)]="searchQuery" (ngModelChange)="search()" />
 </div>
-<input type="text" class="student-search-input" placeholder="Search..." [(ngModel)]="searchQuery" (ngModelChange)="search()" />
 <ol>
   <li *ngFor="let student of studentsToShow">
-    <app-student-list-item [student]="student"></app-student-list-item>
+    <app-student-list-item [student]="student" (click)="studentClicked(student)"></app-student-list-item>
   </li>
 </ol>
