@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Student } from '../student.types';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { StudentRestService } from 'src/app/shared/students-rest.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-list',
@@ -10,16 +11,15 @@ import { StudentRestService } from 'src/app/shared/students-rest.service';
 })
 export class StudentListComponent implements OnInit {
 
-  form: FormGroup;
-
-  formSubmitted = false;
-
   searchQuery = '';
 
   students: Student[];
 
   studentsToShow: Student[] = [];
-  constructor(private studentRestService: StudentRestService) { }
+  constructor(
+    private studentRestService: StudentRestService,
+    private router: Router,
+  ) { }
 
   ngOnInit() {
     this.studentRestService.getStudents()
@@ -27,42 +27,10 @@ export class StudentListComponent implements OnInit {
         this.students = students;
         this.studentsToShow = [...this.students];
       });
-    this.form = new FormGroup({
-      firstName: new FormControl('', Validators.required),
-      lastName: new FormControl('', Validators.required),
-      courses: new FormArray([]),
-    });
   }
 
-  addCourse() {
-    const constrols = this.form.get('courses') as FormArray;
-    constrols.push(new FormGroup({
-      name: new FormControl('', Validators.required),
-      startDate: new FormControl(''),
-    }));
-  }
-
-  addStudent() {
-    this.formSubmitted = true;
-
-    if (!this.form.valid) {
-      return;
-    }
-
-    const newStudent = {
-      firstName: this.form.get('firstName').value,
-      lastName: this.form.get('lastName').value,
-      score: 0,
-      courses: this.form.get('courses').value
-    };
-
-    this.studentRestService.createStudent(newStudent)
-      .subscribe(res => {
-        this.students.push(res);
-        this.studentsToShow = [...this.students];
-        this.formSubmitted = false;
-        this.form.reset();
-      });
+  studentClicked(student: Student) {
+    this.router.navigate(['student', student.id]);
   }
 
   search() {

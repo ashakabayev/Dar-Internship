@@ -14,11 +14,20 @@ export class StudentRestService {
 
   }
 
+  getStudent(id: string): Observable<Student> {
+    return this.http.get<Student>(`${this.host}/students/${id}`);
+  }
+
   getStudents(): Observable<Student[]> {
     return this.http.get<Student[]>(`${this.host}/students`);
   }
 
-  createStudent(data: Student): Observable<any> {
-    return this.http.post(`${this.host}/students`, data);
+  createStudent(data: Student): Observable<Student> {
+    return this.http.post<Student>(`${this.host}/students`, data);
+  }
+
+  updateStudent(data: Student): Observable<Student> {
+    console.log(data)
+    return this.http.put<Student>(`${this.host}/students/${data.id}`, data);
   }
 }
