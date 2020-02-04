@@ -1,0 +1,7 @@
+<h3>Faculties list</h3>
+<a routerLink="/faculties/faculty">Create faculty</a>
+<ol>
+  <li *ngFor="let faculty of faculties">
+    <app-faculty-list-item [faculty]="faculty" (click)="itemClicked(faculty)"></app-faculty-list-item>
+  </li>
+</ol>

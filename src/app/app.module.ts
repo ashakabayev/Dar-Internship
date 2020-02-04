@@ -9,6 +9,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { StudentModule } from './students/student.module';
+import { FacultyModule } from './faculties/faculty.module';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     StudentModule,
+    FacultyModule,
     RouterModule.forRoot(routes),
   ],
   providers: [],
