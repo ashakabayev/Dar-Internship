@@ -10,10 +10,14 @@ import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { StudentModule } from './students/student.module';
 import { FacultyModule } from './faculties/faculty.module';
+import { AuthGuard } from './shared/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'faculties', loadChildren:() => import('./faculties/faculty.module').then(m => m.FacultyModule)},
+  { path: 'faculties',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+    import('./faculties/faculty.module').then(m => m.FacultyModule)},
   { path: '**', component: NotFoundComponent },
 ];
 
