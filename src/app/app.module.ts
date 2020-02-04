@@ -13,6 +13,7 @@ import { FacultyModule } from './faculties/faculty.module';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'faculties', loadChildren:() => import('./faculties/faculty.module').then(m => m.FacultyModule)},
   { path: '**', component: NotFoundComponent },
 ];
 
@@ -28,7 +29,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     StudentModule,
-    FacultyModule,
     RouterModule.forRoot(routes),
   ],
   providers: [],

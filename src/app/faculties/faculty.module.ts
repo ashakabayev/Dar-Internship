@@ -5,10 +5,15 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FacultyComponent } from './faculty/faculty.component';
 import { FacultyListItemComponent } from './faculty-list-item/faculty-list-item.component';
 import { FacultyListComponent } from './faculty-list/faculty-list.component';
+import { FacultyResolver } from './faculty.resolver';
 
 const routes: Routes = [
-  { path: 'faculties', component: FacultyListComponent},
-  { path: 'faculty/:id', component: FacultyComponent},
+  { path: '', component: FacultyListComponent},
+  { path: 'faculty/:id',
+    component: FacultyComponent,
+    resolve: {
+      faculty: FacultyResolver,
+    }},
   { path: 'faculty', component: FacultyComponent},
 ];
 

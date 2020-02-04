@@ -27,6 +27,6 @@ export class FacultyListComponent implements OnInit {
   }
 
   itemClicked(faculty: Faculty) {
-    this.router.navigate(['faculty', faculty.id]);
+    this.router.navigate(['faculties', 'faculty', faculty.id]);
   }
 }
