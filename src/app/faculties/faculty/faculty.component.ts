@@ -28,15 +28,10 @@ export class FacultyComponent implements OnInit {
       name: new FormControl('', Validators.required),
     });
 
-    this.route.params.subscribe(params => {
-      if (params.id) {
-        this.facultyRestService.getFaculty(params.id)
-          .subscribe(faculty => {
-            if (faculty) {
-              this.faculty = faculty;
-              this.form.patchValue(faculty);
-            }
-          });
+    this.route.data.subscribe(data => {
+      if (data.faculty) {
+        this.faculty = data.faculty;
+        this.form.patchValue(data.faculty);
       }
     });
   }
