@@ -9,11 +9,13 @@ import { FacultyResolver } from './faculty.resolver';
 
 const routes: Routes = [
   { path: '', component: FacultyListComponent},
-  { path: 'faculty/:id',
+  {
+    path: 'faculty/:id',
     component: FacultyComponent,
     resolve: {
-      faculty: FacultyResolver,
-    }},
+      faculty: FacultyResolver
+    }
+  },
   { path: 'faculty', component: FacultyComponent},
 ];
 
@@ -28,6 +30,9 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     RouterModule.forChild(routes),
+  ],
+  providers: [
+    FacultyResolver,
   ]
 })
 export class FacultyModule { }

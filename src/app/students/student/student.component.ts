@@ -30,21 +30,16 @@ export class StudentComponent implements OnInit {
       courses: new FormArray([]),
     });
 
-    this.route.params.subscribe(params => {
-      if (params.id) {
-        this.studentRestService.getStudent(params.id)
-          .subscribe(student => {
-            if (student) {
-              this.student = student;
-              this.form.patchValue(student);
-              student.courses.forEach(course => {
-                const constrols = this.form.get('courses') as FormArray;
-                constrols.push(new FormGroup({
-                  name: new FormControl(course.name, Validators.required),
-                  startDate: new FormControl(course.startDate),
-                }));
-              });
-            }
+    this.route.data.subscribe(data => {
+      if (data.student) {
+        this.student = data.student;
+        this.form.patchValue(data.student);
+        data.student.courses.forEach(course => {
+            const constrols = this.form.get('courses') as FormArray;
+            constrols.push(new FormGroup({
+              name: new FormControl(course.name, Validators.required),
+              startDate: new FormControl(course.startDate),
+            }));
           });
       }
     });

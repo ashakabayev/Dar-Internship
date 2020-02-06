@@ -31,7 +31,7 @@ export class FacultyComponent implements OnInit {
     this.route.data.subscribe(data => {
       if (data.faculty) {
         this.faculty = data.faculty;
-        this.form.patchValue(this.faculty);
+        this.form.patchValue(data.faculty);
       }
     });
   }

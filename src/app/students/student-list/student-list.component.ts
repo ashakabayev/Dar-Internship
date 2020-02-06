@@ -30,7 +30,7 @@ export class StudentListComponent implements OnInit {
   }
 
   studentClicked(student: Student) {
-    this.router.navigate(['student', student.id]);
+    this.router.navigate(['students', 'student', student.id]);
   }
 
   search() {
