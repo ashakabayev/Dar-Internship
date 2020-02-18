@@ -7,10 +7,8 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router) {
 
   }
-
   canActivate(route: ActivatedRouteSnapshot): boolean {
-
-    const auth = localStorage.getItem('dar-lab-auth');
+    const auth = localStorage.getItem('token');
 
     if (auth) {
       return true;

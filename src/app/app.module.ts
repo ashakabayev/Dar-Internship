@@ -9,8 +9,14 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './shared/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
+  {
+    path: 'registration',
+    component: RegistrationComponent
+  },
   {
     path: '',
     component: DashboardComponent,
@@ -40,6 +46,8 @@ const routes: Routes = [
     NotFoundComponent,
     LoginComponent,
     DashboardComponent,
+    RegistrationComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,

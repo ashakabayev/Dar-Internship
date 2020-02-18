@@ -1,21 +1,21 @@
-<div class="layout">
+<div class="layout wrapper ">
   <header class="header">
-
+    <app-logout></app-logout>
   </header>
   <div class="main">
-    <aside class="sidebar">
-      <ul class="nav">
-        <li>
+    <nav class="sidebar" >
+      <ul class="list-unstyled components  ml-5">
+        <li class="mt-2">
           <a routerLink="/">Home</a>
         </li>
-        <li>
+        <li class="mt-2">
           <a routerLink="/students">Students</a>
         </li>
-        <li>
-          <a routerLink="/faculties">Faculties</a>
+        <li class="mt-2">
+          <a routerLink="/faculties" >Faculties</a>
         </li>
       </ul>
-    </aside>
+    </nav>
     <section class="content">
       <router-outlet></router-outlet>
     </section>

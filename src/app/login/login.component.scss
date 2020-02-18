@@ -1,5 +1,9 @@
-
+* {
+  //background-color: #4CAF50;
+}
 .login-form {
+  padding: 50px 20px 20px 20px;
+  background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
   display: flex;
   flex-flow: column nowrap;
   flex: 1;
@@ -14,10 +18,24 @@
 
     label {
       margin-bottom: 0.5rem;
+      font-size: 24px;
     }
 
     input {
       padding: 0.5rem 0.5rem;
+      height: 20px;
+      font-size: 16px;
     }
+  }
+  button {
+    font-size: 16px;
+  }
+  .goToRegistration {
+    margin-top: 10px;
+    font-size: 24px;
+  }
+  .message {
+    font-size: 24px;
+    color: red;
   }
 }

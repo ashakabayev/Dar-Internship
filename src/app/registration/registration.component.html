@@ -1,0 +1,22 @@
+<div class="login-form">
+  <form [formGroup]="form" (ngSubmit)="register()">
+<!--  <form [formGroup]="form">-->
+    <div class="form-group">
+      <label>Firstname</label>
+      <input type="text"  formControlName="firstName" placeholder="NEW LOGIN">
+    </div>
+    <div class="form-group">
+      <label>Lastname</label>
+      <input type="text" formControlName="lastName" placeholder="NEW PASSWORD">
+    </div>
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text"  formControlName="login" placeholder="NEW LOGIN">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" formControlName="password" placeholder="NEW PASSWORD">
+    </div>
+    <button type="submit">Register</button>
+  </form>
+</div>

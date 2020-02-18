@@ -1,0 +1,15 @@
+button {
+  //display: flex;
+  float: right;
+  margin-right: 10px;
+  font-size: 16px;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #0747a6;
+  border: #0747a6 solid 1px;
+  &:hover {
+    background-color: white;
+    color: #0747a6;
+  }
+}
